@@ -9,6 +9,11 @@ data = [line.strip() for line in data if line.strip()]
 # 使用正则表达式移除中文标点符号
 data = re.sub(r'[，。！？、（）《》：“”；]', '', data)
 
+# 删除数字
+data = re.sub(r'\d+', '', data)
 
-with open('output_file.txt', 'w', encoding='utf-8') as file:
+# 删除网址
+data = re.sub(r'http\S+|www\S+', '', data)
+
+with open('clean_zh.txt', 'w', encoding='utf-8') as file:
     file.write(data)
